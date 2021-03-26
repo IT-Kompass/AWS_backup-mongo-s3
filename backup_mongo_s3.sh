@@ -19,7 +19,7 @@ for db in ${dbs[*]}
 do
     i=$(($i+1))
     if (($i % 2)); then
-        mongodump --archive="/data/export/"$filename"_"$db --host localhost:27017 --db $db -u $user -p $password --tlsInsecure --authenticationDatabase=admin --gzip
+        mongodump --archive=$dir"/"$filename"_"$db --host localhost:27017 --db $db -u $user -p $password --tlsInsecure --authenticationDatabase=admin --gzip
     fi
 done
 aws s3 cp --recursive $dir/ s3://$targetbucket/
